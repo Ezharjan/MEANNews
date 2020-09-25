@@ -1,0 +1,49 @@
+{
+    "name": "mean-news-ui",
+    "version": "0.0.0",
+    "scripts": {
+        "ng": "ng",
+        "start": "ng serve",
+        "build": "ng build",
+        "test": "ng test",
+        "lint": "ng lint",
+        "e2e": "ng e2e"
+    },
+    "private": true,
+    "dependencies": {
+        "@angular/animations": "",
+        "@angular/common": "",
+        "@angular/compiler": "",
+        "@angular/core": "",
+        "@angular/forms": "",
+        "@angular/platform-browser": "",
+        "@angular/platform-browser-dynamic": "",
+        "@angular/router": "",
+        "ng-zorro-antd": "",
+        "ngx-markdown": "",
+        "rxjs": "",
+        "tslib": "",
+        "zone.js": ""
+    },
+    "devDependencies": {
+        "@angular-devkit/build-angular": "",
+        "@angular/cli": "",
+        "@angular/compiler-cli": "",
+        "@angular/language-service": "",
+        "@types/jasmine": "",
+        "@types/jasminewd2": "",
+        "@types/node": "",
+        "codelyzer": "",
+        "jasmine-core": "",
+        "jasmine-spec-reporter": "",
+        "karma": "",
+        "karma-chrome-launcher": "",
+        "karma-coverage-istanbul-reporter": "",
+        "karma-jasmine": "",
+        "karma-jasmine-html-reporter": "",
+        "protractor": "",
+        "ts-node": "",
+        "tslint": "",
+        "typescript": ""
+    }
+}
