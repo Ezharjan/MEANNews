@@ -10,13 +10,39 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectId;
 
 // 连接URL
-const url = 'mongodb://localhost:27017';
+const mongodbURL = 'mongodb://localhost:27017';
 
 // 数据库名称
 const dbName = 'meanNews';
 
 // 创建MongoClient客户端
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+const client = new MongoClient(mongodbURL, { useNewUrlParser: true, useUnifiedTopology: true });
+
+// 创建数据库并初始化
+client.connect((err) => {
+    if (err) throw err;
+    console.log('数据库已创建并连接成功！');
+
+    let db = client.db(dbName);
+
+    let adminUser = { userId: 1, username: "alex", password: "123456", email: "alex@alex.cc" };
+    db.collection("user").insertOne(adminUser, function (err, res) {
+        if (err) throw err;
+        console.log("管理员数据插入成功: " + res);
+    });
+    let firstNews = { newsId: 1, title: "DEMO", content: "this is the first demo news", creation: new Date() };
+    db.collection("news").insertOne(firstNews, function (err, res) {
+        if (err) throw err;
+        console.log("新闻数据插入成功: " + res);
+    });
+});
+
+
+
+
+
+
+
 
 app.get('/admins/hi', (req, res) => {
 
@@ -40,6 +66,7 @@ app.get('/admins/hi', (req, res) => {
         })
     }
 });
+
 
 // 创建新闻
 app.post('/admins/news', (req, res) => {
@@ -111,6 +138,7 @@ app.get('/news', (req, res) => {
 
 });
 
+
 // 根据id查询新闻信息
 app.get('/news/:newsId', (req, res) => {
 
@@ -137,6 +165,7 @@ app.get('/news/:newsId', (req, res) => {
 
 });
 
+
 // 检查权限
 const check = function (name, pass, callback) {
     var valid = false;
@@ -152,7 +181,7 @@ const check = function (name, pass, callback) {
 
         const db = client.db(dbName);
 
-        // 判读账号密码是否匹配
+        // 判断账号密码是否匹配
         findUser(db, name, function (result) {
             // 响应成功
             if ((result.username === name) && (result.password === pass)) {
@@ -184,6 +213,7 @@ const insertNews = function (db, _news, callback) {
         callback(result);
     });
 }
+
 
 // 查找全部新闻标题
 const findNewsList = function (db, callback) {
